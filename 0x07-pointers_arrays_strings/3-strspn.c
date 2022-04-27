@@ -19,11 +19,11 @@ unsigned int _strspn(char *s, char *accept)
 		{
 			if (*(s + i) == *(accept + j))
 			{
-				bool = 0;
+				cond = 0;
 				break;
 			}
 		}
-		if (bool == 1)
+		if (cond == 1)
 			break;
 	}
 	return (i);
