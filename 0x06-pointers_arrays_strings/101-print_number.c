@@ -1,69 +1,49 @@
-#include <stdio.h>
 #include "main.h"
-
+#include <stdio.h>
 /**
- * exponent - a to the power of b
- * @a: base number
- * @b: exponent
- * Description: calcuates a^b
- * 
- * Return: a^b
- **/
+ * print_number - Print an integer using only _putchar
+ * @n: integer to print
+ */
 
-int exponent(int a, int b)
+void print_number(int n)
 {
 	int power;
-	
-	power = a;
-	
-	if (a == 0)
-		return (0);
-	if (b == 0)
-		return (1);
-	
-	while (b >= 2)
-	{
-		power  = power * a;
-		b--;
-	}
-	return (power);
-}
+	int neg;
+	int hold;
 
-/**
- * print_number - print an int using only _putchar
- * @number: int to be printed by function
- *
- * Return: nothing
- **/
-
-void print_number(int number)
-{
-	int n, x, count, sign;
-
-	sign = 1;
-	x = 0;
-	n = 1;
-	count = number;
-	
-	if (number < 0)
+	neg = 0;
+	power = 1;
+	hold = n;
+	if (n < 0)
 	{
 		_putchar('-');
-		sign = -1;
+		neg = 1;
 	}
-	
-	for (; count >= 10 || count <= -10; n++)
+
+	while (hold > 9 || hold < -9)
 	{
-		count = count / 10;
+		power *= 10;
+		hold /= 10;
 	}
-	
-	count = number;
-	
-	while (n >= 2)
+
+	while (power > 0)
 	{
-		x = (count / exponent(10, n - 1)) * sign;
-		_putchar(digit + '0');
-		counter = counter % exponent(10, size - 1);
-		n--;
+		if (power > 9)
+		{
+			if (!neg)
+				_putchar((n / power % 10) + '0');
+			else
+				_putchar((n / power % 10) * -1 + '0');
+
+			power /= 10;
+		}
+		if (power == 1)
+		{
+			if (neg)
+				_putchar((n % 10) * -1 + '0');
+			else
+				_putchar(n % 10 + '0');
+			power = 0;
+		}
 	}
-	_putchar(sign * count % 10 + '0');
 }
